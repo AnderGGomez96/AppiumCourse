@@ -57,6 +57,10 @@ public class BaseTest {
         ));
     }
 
+       public String scrollAction(String text){
+        return "new UiScrollable(new UiSelector()).scrollIntoView(text(\"" + text + "\"))";
+    }
+
     @AfterClass
     public void tearDowm() {
         // Se cierra el driver y el servicio de Appium
