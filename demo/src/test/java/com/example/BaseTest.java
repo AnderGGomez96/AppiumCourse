@@ -6,8 +6,13 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.Duration;
 
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebElement;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+
+import com.google.common.collect.ImmutableMap;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
@@ -39,6 +44,17 @@ public class BaseTest {
 
         // Se configura el tiempo de espera implicito
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    }
+
+    public void longPressAction(WebElement element){
+        // Se obtiene el id del elemento
+        String elementId = ((RemoteWebElement) element).getId();
+
+        // Se ejecuta el script de long press
+        ((JavascriptExecutor) driver).executeScript("mobile: longClickGesture", ImmutableMap.of(
+            "elementId", elementId,
+            "duration", 2000
+        ));
     }
 
     @AfterClass

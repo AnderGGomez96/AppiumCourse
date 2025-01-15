@@ -14,20 +14,25 @@ import io.appium.java_client.AppiumBy;
 public class LongPress extends BaseTest {
 
     @Test
-    public void LongPressGesture() throws InterruptedException{
+    public void LongPressGesture() throws InterruptedException {
 
         driver.findElement(AppiumBy.accessibilityId("Views")).click();
         driver.findElement(AppiumBy.accessibilityId("Expandable Lists")).click();
         driver.findElement(AppiumBy.accessibilityId("1. Custom Adapter")).click();
-
         WebElement element = driver.findElement(By.xpath("//android.widget.TextView[@text='People Names']"));
+        longPressAction(element);
 
-        ((JavascriptExecutor) driver).executeScript("mobile: longClickGesture", ImmutableMap.of(
-            "elementId", ((RemoteWebElement) element).getId(),
-            "duration", 2000
-        ));
+        String text = driver
+                .findElement(By.xpath(
+                        "//android.widget.TextView[@resource-id=\"android:id/title\" and @text=\"Sample menu\"]"))
+                .getText();
 
-        String text = driver.findElement(By.xpath("//android.widget.TextView[@resource-id=\"android:id/title\" and @text=\"Sample menu\"]")).getText();
         Assert.assertEquals(text, "Sample menu");
+        
+        Assert.assertTrue(driver
+                .findElement(By.xpath(
+                        "//android.widget.TextView[@resource-id=\"android:id/title\" and @text=\"Sample menu\"]"))
+                .isDisplayed());
+
     }
 }
