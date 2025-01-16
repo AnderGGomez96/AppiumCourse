@@ -62,11 +62,22 @@ public class BaseTest {
         // Se obtiene el id del elemento
         String elementId = ((RemoteWebElement) element).getId();
 
-        // Se ejecuta el script de long press
+        // Se ejecuta el script de swipe
         ((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", ImmutableMap.of(
                 "elementId", elementId,
                 "direction", direction,
                 "percent", 0.75));
+    }
+
+    public void dragDropGesture(WebElement element, int endX, int endY) {
+        // Se obtiene el id del elemento
+        String elementId = ((RemoteWebElement) element).getId();
+
+        // Se ejecuta el script de dragGesture
+        ((JavascriptExecutor) driver).executeScript("mobile: dragGesture", ImmutableMap.of(
+                "elementId", elementId,
+                "endX", endX,
+                "endY", endY));
     }
 
     public String scrollAction(String text) {
