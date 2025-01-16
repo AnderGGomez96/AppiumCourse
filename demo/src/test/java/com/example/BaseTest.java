@@ -19,7 +19,6 @@ import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 
-
 public class BaseTest {
     public AppiumDriverLocalService service;
     public AndroidDriver driver;
@@ -28,9 +27,11 @@ public class BaseTest {
     public void ConfigureAppiumServer() throws MalformedURLException, URISyntaxException {
 
         // Se configura el servicio de Appium
-        service = new AppiumServiceBuilder().withAppiumJS(new File("C:\\Users\\ASUS\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js"))
-        .withIPAddress("127.0.0.1")
-        .usingPort(4723).build();
+        service = new AppiumServiceBuilder()
+                .withAppiumJS(
+                        new File("C:\\Users\\ASUS\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js"))
+                .withIPAddress("127.0.0.1")
+                .usingPort(4723).build();
 
         // Se inicia el servicio de Appium
         service.start();
@@ -38,7 +39,8 @@ public class BaseTest {
         // Se configura el driver de Appium
         UiAutomator2Options options = new UiAutomator2Options();
         options.setDeviceName("motorola moto g31");
-        options.setApp("C:\\Users\\ASUS\\Documents\\Appium\\AppiumCourse\\demo\\src\\test\\java\\com\\example\\resources\\ApiDemos-debug.apk");
+        options.setApp(
+                "C:\\Users\\ASUS\\Documents\\Appium\\AppiumCourse\\demo\\src\\test\\java\\com\\example\\resources\\ApiDemos-debug.apk");
 
         driver = new AndroidDriver(new URI("http://127.0.0.1:4723").toURL(), options);
 
@@ -46,18 +48,28 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
-    public void longPressAction(WebElement element){
+    public void longPressAction(WebElement element) {
         // Se obtiene el id del elemento
         String elementId = ((RemoteWebElement) element).getId();
 
         // Se ejecuta el script de long press
         ((JavascriptExecutor) driver).executeScript("mobile: longClickGesture", ImmutableMap.of(
-            "elementId", elementId,
-            "duration", 2000
-        ));
+                "elementId", elementId,
+                "duration", 2000));
     }
 
-       public String scrollAction(String text){
+    public void swipeGesture(WebElement element, String direction) {
+        // Se obtiene el id del elemento
+        String elementId = ((RemoteWebElement) element).getId();
+
+        // Se ejecuta el script de long press
+        ((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", ImmutableMap.of(
+                "elementId", elementId,
+                "direction", direction,
+                "percent", 0.75));
+    }
+
+    public String scrollAction(String text) {
         return "new UiScrollable(new UiSelector()).scrollIntoView(text(\"" + text + "\"))";
     }
 
