@@ -40,7 +40,10 @@ public class BaseTest {
         UiAutomator2Options options = new UiAutomator2Options();
         options.setDeviceName("motorola moto g31");
         options.setApp(
-                "C:\\Users\\ASUS\\Documents\\Appium\\AppiumCourse\\demo\\src\\test\\java\\com\\example\\resources\\ApiDemos-debug.apk");
+                //"C:\\Users\\ASUS\\Documents\\Appium\\AppiumCourse\\demo\\src\\test\\java\\com\\example\\resources\\ApiDemos-debug.apk"
+                
+                "C:\\Users\\ASUS\\Documents\\Appium\\AppiumCourse\\demo\\src\\test\\java\\com\\example\\resources\\General-Store.apk"
+                );
 
         driver = new AndroidDriver(new URI("http://127.0.0.1:4723").toURL(), options);
 
