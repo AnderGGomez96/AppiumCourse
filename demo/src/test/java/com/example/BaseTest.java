@@ -87,6 +87,10 @@ public class BaseTest {
         return "new UiScrollable(new UiSelector()).scrollIntoView(text(\"" + text + "\"))";
     }
 
+    public double getFormattedPrice(String priceText) {
+        return Double.parseDouble(priceText.substring(1));
+    }
+
     @AfterClass
     public void tearDowm() {
         // Se cierra el driver y el servicio de Appium
