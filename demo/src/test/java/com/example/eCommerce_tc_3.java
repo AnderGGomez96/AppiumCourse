@@ -66,6 +66,20 @@ public class eCommerce_tc_3 extends BaseTest {
 
                 Assert.assertEquals(totalPrice, totalAmount);
 
+                driver.findElement(By.className("android.widget.CheckBox")).click();
+
+                WebElement terms = driver.findElement(By.id("com.androidsample.generalstore:id/termsButton"));
+
+                longPressAction(terms);
+
+                String textTerms = driver.findElement(By.id("com.androidsample.generalstore:id/alertTitle")).getText();
+
+                Assert.assertEquals(textTerms, "Terms Of Conditions");
+
+                driver.findElement(By.id("android:id/button1")).click();
+
+                driver.findElement(By.id("com.androidsample.generalstore:id/btnProceed")).click();
+
         }
 
 }
