@@ -39,6 +39,7 @@ public class BaseTest {
         // Se configura el driver de Appium
         UiAutomator2Options options = new UiAutomator2Options();
         options.setDeviceName("motorola moto g31");
+        options.setChromedriverExecutable("C:\\Users\\ASUS\\Documents\\chromedriver-win32\\chromedriver.exe");
         options.setApp(
                 //"C:\\Users\\ASUS\\Documents\\Appium\\AppiumCourse\\demo\\src\\test\\java\\com\\example\\resources\\ApiDemos-debug.apk"
                 
